@@ -1,0 +1,41 @@
+<idea-plugin>
+    <id>com.gaussdb.mybatis-log-plugin</id>
+    <name>MyBatis GaussDB Log Plugin</name>
+    <vendor email="support@gaussdb.com" url="https://www.gaussdb.com">GaussDB</vendor>
+
+    <description><![CDATA[
+    Restore MyBatis SQL log to original whole executable SQL for GaussDB database.
+    <br/>
+    <b>Features:</b>
+    <ul>
+        <li>Parse MyBatis SQL logs and restore complete executable SQL</li>
+        <li>Support GaussDB specific SQL syntax</li>
+        <li>SQL formatting with keyword highlighting</li>
+        <li>Jump to SQL in mapper files</li>
+    </ul>
+    <br/>
+    <b>Usage:</b>
+    <ol>
+        <li>Click Tools -> MyBatis GaussDB Log</li>
+        <li>Click MyBatis GaussDB Log in the console</li>
+    </ol>
+    ]]></description>
+
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <consoleFilterProvider implementation="com.gaussdb.mybatislog.MyBatisLogConsoleFilterProvider"/>
+        <executor implementation="com.gaussdb.mybatislog.gui.MyBatisLogExecutor" id="MyBatisGaussDBLogExecutor"/>
+    </extensions>
+
+    <actions>
+        <action id="com.gaussdb.mybatislog.action.MyBatisLogAction" 
+                class="com.gaussdb.mybatislog.action.MyBatisLogAction"
+                text="MyBatis GaussDB Log" 
+                description="MyBatis GaussDB log plugin"
+                icon="/icons/gaussdb.svg">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+            <add-to-group group-id="ConsoleEditorPopupMenu" anchor="before" relative-to-action="ConsoleView.ClearAll"/>
+        </action>
+    </actions>
+</idea-plugin>
